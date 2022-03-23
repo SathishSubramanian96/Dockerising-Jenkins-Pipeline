@@ -35,10 +35,9 @@ node {
     stage('Execute Image'){
         def customImage = docker.build("sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}")
       script { 
-        docker run -p 80:80 -t "sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}"
+        docker container run --detach --publish 8080:80 --name container_new
       }
         customImage.inside("--entrypoint=''") {
-            sh 'echo Hello'
-        }
+            bat "echo Hello"        }
     }
 }
