@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "sathishsubramanian/dockerising_jenkins_pipeline"
+    registry = "sathishsubramanian/dockerising_jenkins_piepeline"
     registryCredential = 'dockerhub'
   }
   agent any
@@ -13,10 +13,7 @@ pipeline {
       }
     }
     stage('Deploy Image') {
-
-
-
-      steps{
+     steps{
         script {
           docker.withRegistry( '', 'dockerhub' ) {
             dockerImage.push()
@@ -36,7 +33,7 @@ pipeline {
 
 node {
     stage('Execute Image'){
-        def customImage = docker.build("sathishsubramanian/ dockerising_jenkins_pipeline:${env.BUILD_NUMBER}")
+        def customImage = docker.build("sathishsubramanian/dockerising_jenkins_pipeline:${env.BUILD_NUMBER}")
         customImage.inside {
             sh 'echo Hello'
         }
