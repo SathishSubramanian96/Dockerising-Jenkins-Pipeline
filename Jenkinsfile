@@ -34,6 +34,9 @@ pipeline {
 node {
     stage('Execute Image'){
         def customImage = docker.build("sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}")
+      script{ 
+        docker run -p 9000:80 -t "sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}"
+      }
         customImage.inside("--entrypoint=''") {
             sh 'echo Hello'
         }
