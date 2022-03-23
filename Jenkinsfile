@@ -33,7 +33,7 @@ pipeline {
 
 node {
     stage('Execute Image'){
-        def customImage = docker.build("sathishsubramanian/dockerising_jenkins_pipeline:${env.BUILD_NUMBER}")
+        def customImage = docker.build("sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}")
         customImage.inside {
             sh 'echo Hello'
         }
