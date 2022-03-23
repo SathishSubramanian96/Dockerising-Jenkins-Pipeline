@@ -24,7 +24,7 @@ pipeline {
 
     stage('Remove Image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        bat "docker rmi $registry:$BUILD_NUMBER"
       }
     }
  
@@ -35,7 +35,7 @@ node {
     stage('Execute Image'){
         def customImage = docker.build("sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}")
         customImage.inside {
-            sh 'echo Hello'
+            bat 'echo Hello'
         }
     }
 }
