@@ -35,7 +35,7 @@ node {
     stage('Execute Image'){
         def customImage = docker.build("sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}")
         customImage.inside("--entrypoint=''") {
-            bat 'echo Hello'
+            sh 'echo Hello'
         }
     }
 }
