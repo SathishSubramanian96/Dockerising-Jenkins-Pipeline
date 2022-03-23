@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "sathishsubramanian/dockerising_jenkins_piepeline"
-    registryCredential = 'dockerhub'
+    registryCredential = 'dockerHub'
   }
   agent any
   stages {
