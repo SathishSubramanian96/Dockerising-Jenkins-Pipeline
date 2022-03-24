@@ -3,10 +3,7 @@ pipeline {
     registry = "sathishsubramanian/dockerising_jenkins_piepeline"
     registryCredential = 'dockerHub'
   }
-  agent   {
-        docker { image 'alpine/latest' 
-               }
-    }
+  agent any
   stages {
     stage('Building image') {
       steps{
