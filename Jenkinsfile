@@ -9,7 +9,7 @@ pipeline {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-          bat "docker run -d -p 81:8080 -v /var/log/:/var/log/ sathishsubramanian/dockerising_jenkins_piepeline:${BUILD_NUMBER}"
+         
         }
       }
     }
@@ -19,6 +19,7 @@ pipeline {
           docker.withRegistry( '', registryCredential ) {
             
             dockerImage.push()
+            bat "docker run -d -p 81:8080 -v /var/log/:/var/log/ sathishsubramanian/dockerising_jenkins_piepeline:${BUILD_NUMBER}"
           }
         }
       }
