@@ -26,7 +26,7 @@ pipeline {
 
     stage('Remove Image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        bat "docker rmi $registry:$BUILD_NUMBER"
       }
     }
  
@@ -39,6 +39,6 @@ node {
         
         
         customImage.inside {
-            sh "echo Hello"        }
+            bat "echo Hello"        }
     }
 }
