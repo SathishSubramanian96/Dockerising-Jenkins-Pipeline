@@ -4,8 +4,9 @@ pipeline {
     registryCredential = 'dockerHub'
   }
   agent   {
-        docker { image 'alpine/latest' }
-         reuseNode true
+        docker { image 'alpine/latest' 
+                 reuseNode true
+               }
     }
   stages {
     stage('Building image') {
