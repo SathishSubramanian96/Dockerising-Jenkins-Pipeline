@@ -9,6 +9,7 @@ pipeline {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          bat "docker run -d -p 81:8080 -v /var/log/:/var/log/ sathishsubramanian/dockerising_jenkins_piepeline:${BUILD_NUMBER}"
         }
       }
     }
@@ -16,6 +17,7 @@ pipeline {
      steps{
         script {
           docker.withRegistry( '', registryCredential ) {
+            
             dockerImage.push()
           }
         }
@@ -34,7 +36,7 @@ pipeline {
 node {
     stage('Execute Image'){
         def customImage = docker.build("sathishsubramanian/dockerising_jenkins_piepeline:${env.BUILD_NUMBER}")
-      bat "docker run -d -p 81:8080 -v /var/log/:/var/log/ sathishsubramanian/dockerising_jenkins_piepeline:${BUILD_NUMBER}"
+      
         customImage.inside {
             bat "echo Hello"        }
     }
